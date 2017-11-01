@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     登录
     <a @click="doLogin">去工作台</a>
   </div>

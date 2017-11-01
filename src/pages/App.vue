@@ -1,13 +1,9 @@
 <template>
   <div class="container">
     <div class="header"></div>
-    <div class="wrap">
-      <div class="right-bar">
-        <rightMenu/>
-      </div>
-      <div class="main">
-        <router-view/>
-      </div>
+    <div class="main">
+      <rightMenu class="right-bar"/>
+      <router-view class="content"/>
     </div>
   </div>
 </template>
@@ -30,29 +26,28 @@
 </script>
 
 <style>
-  .header {
+  .header{
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 60px;
     width: 100%;
     background-color: #373D41;
-    top: 0;
+    z-index: 2;
   }
-
-  .wrap {
+  .main{
+    position: absolute;
+    left: 0;
+    margin-top: 60px;
+    background-color: aquamarine;
     height: calc(100% - 60px);
     width: 100%;
-    top: 60px;
   }
+  .right-bar,.content{
+    float: left;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .content{background-color: #ccc}
 
-  .header, .wrap {
-    position: fixed;
-    left: 0;
-  }
-
-  .wrap > div {
-    display: inline-block;
-  }
-
-  .right-bar {
-    width: 180px;
-  }
 </style>

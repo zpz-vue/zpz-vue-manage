@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     注册
   </div>
 </template>

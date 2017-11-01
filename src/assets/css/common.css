@@ -1,4 +1,14 @@
+html,body,.app-wrap,.container{
+  width: 100%;
+  height: calc(100%);
+}
 body,div{
   margin: 0;
   padding: 0;
+}
+.cf{
+  clear: both;
+  float: none;
+  width: 0;
+  height: 0;
 }
