@@ -2,14 +2,18 @@
   <div class="container">
     <div class="header"></div>
     <div class="main">
-      <rightMenu class="right-bar"/>
-      <router-view class="content"/>
+      <el-scrollbar class="right-bar">
+        <rightMenu/>
+      </el-scrollbar>
+      <el-scrollbar class="content">
+        <router-view/>
+      </el-scrollbar>
     </div>
   </div>
 </template>
 
 <script>
-  import { rightMenu } from '../components/index'
+  import {rightMenu} from '../components/index'
   export default {
     name: 'page',
     data () {
@@ -20,13 +24,12 @@
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
   }
 </script>
 
 <style>
-  .header{
+  .header {
     position: fixed;
     top: 0;
     left: 0;
@@ -35,7 +38,8 @@
     background-color: #373D41;
     z-index: 2;
   }
-  .main{
+
+  .main {
     position: absolute;
     left: 0;
     margin-top: 60px;
@@ -43,11 +47,10 @@
     height: calc(100% - 60px);
     width: 100%;
   }
-  .right-bar,.content{
+
+  .right-bar, .content {
     float: left;
     height: 100%;
-    overflow-y: auto;
   }
-  .content{background-color: #ccc}
 
 </style>

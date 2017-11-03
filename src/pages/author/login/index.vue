@@ -15,7 +15,7 @@ export default {
   watch: {},
   methods: {
     doLogin () {
-      this.$store.dispatch('login', {
+      this.$store.dispatch('author/login', {
         isLogin: true
       })
       this.$router.push({path: '/workbench'})

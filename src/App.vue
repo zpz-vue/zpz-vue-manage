@@ -1,18 +1,17 @@
 <template>
-  <div  class="app-wrap">
-    <router-view/>
-  </div>
+    <transition mode="out-in" enter-active-class="fadeIn" leave-active-class="fadeOut" appear>
+      <router-view/>
+    </transition>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  export default {
+    name: 'app'
+  }
 </script>
 
 <style>
-  .app-wrap{
-    width: 100%;
-    height: 100%;
+  .animated {
+    animation-duration: .5s;
   }
 </style>

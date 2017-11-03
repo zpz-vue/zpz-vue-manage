@@ -1,4 +1,5 @@
 export default {
+  namespaced: true,
   state: {
     name: '用户管理'
   },

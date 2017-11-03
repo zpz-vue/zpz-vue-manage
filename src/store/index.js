@@ -5,6 +5,7 @@ import user from '@/store/modules/user/index'
 import role from '@/store/modules/role/index'
 import author from '@/store/modules/author/index'
 import workbench from '@/store/modules/workbench/index'
+import common from '@/store/modules/common/index'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     user,
     role,
     author,
-    workbench
+    workbench,
+    common
   }
 })
