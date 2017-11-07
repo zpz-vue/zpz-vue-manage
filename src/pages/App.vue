@@ -1,11 +1,10 @@
 <template>
   <div class="container">
-    <div class="header"></div>
-    <div class="main">
-      <el-scrollbar class="right-bar">
-        <rightMenu/>
-      </el-scrollbar>
-      <el-scrollbar class="content">
+    <headerBar/>
+    <rightMenu/>
+    <div class="content-wrapper l-r-transform"
+         :style="{marginLeft: this.$store.state.common.isCollapse ? '64px' :  '200px' }">
+      <el-scrollbar tag="div" wrapClass="content-scrollbar">
         <router-view/>
       </el-scrollbar>
     </div>
@@ -13,14 +12,15 @@
 </template>
 
 <script>
-  import {rightMenu} from '../components/index'
+  import {rightMenu, headerBar} from '../components/index'
   export default {
     name: 'page',
     data () {
       return {}
     },
     components: {
-      rightMenu
+      rightMenu,
+      headerBar
     },
     computed: {},
     watch: {},
@@ -29,28 +29,13 @@
 </script>
 
 <style>
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 60px;
-    width: 100%;
-    background-color: #373D41;
-    z-index: 2;
+  .content-scrollbar {
+    height: calc(100vh - 50px);
   }
 
-  .main {
-    position: absolute;
-    left: 0;
-    margin-top: 60px;
-    background-color: aquamarine;
-    height: calc(100% - 60px);
-    width: 100%;
-  }
-
-  .right-bar, .content {
-    float: left;
-    height: 100%;
+  .content-wrapper {
+    margin-left: 200px;
+    padding-top: 50px;
   }
 
 </style>

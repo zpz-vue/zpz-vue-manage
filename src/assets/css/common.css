@@ -1,14 +1,23 @@
 html,body,.app-wrap,.container{
   width: 100%;
   height: calc(100%);
+  font-size: 13px;
 }
-body,div{
+.page-container{
+  padding: 10px;
+  width: calc(100% - 20px);
+  height: 100%;
+}
+body,div,span,a,img{
   margin: 0;
   padding: 0;
 }
-.cf{
-  clear: both;
-  float: none;
-  width: 0;
-  height: 0;
+.l-r-transform{
+  -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  -moz-transition: -moz-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  -o-transition: -o-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+a,span,label{
+  display: inline-block;
 }

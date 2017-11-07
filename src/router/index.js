@@ -6,6 +6,12 @@ import store from '../store/index'
 import home from '@/pages/App.vue'
 import workbench from '@/pages/workbench/index.vue'
 import login from '@/pages/author/login/index.vue'
+import user from '@/pages/system/user/index.vue'
+import role from '@/pages/system/role/index.vue'
+import resource from '@/pages/system/resource/index.vue'
+import hotel from '@/pages/purchase/hotel/index.vue'
+import scenicspot from '@/pages/purchase/scenicspot/index.vue'
+import vehicle from '@/pages/purchase/vehicle/index.vue'
 
 Vue.use(Router)
 const routes = [
@@ -25,6 +31,60 @@ const routes = [
         component: workbench,
         meta: {
           title: '工作台',
+          auth: true
+        }
+      },
+      {
+        path: '/system/user',
+        name: 'user',
+        component: user,
+        meta: {
+          title: '用户管理',
+          auth: true
+        }
+      },
+      {
+        path: '/system/role',
+        name: 'role',
+        component: role,
+        meta: {
+          title: '角色管理',
+          auth: true
+        }
+      },
+      {
+        path: '/system/resource',
+        name: 'resource',
+        component: resource,
+        meta: {
+          title: '权限管理',
+          auth: true
+        }
+      },
+      {
+        path: '/purchase/hotel',
+        name: 'hotel',
+        component: hotel,
+        meta: {
+          title: '酒店管理',
+          auth: true
+        }
+      },
+      {
+        path: '/purchase/scenicspot',
+        name: 'scenicspot',
+        component: scenicspot,
+        meta: {
+          title: '景点管理',
+          auth: true
+        }
+      },
+      {
+        path: '/purchase/vehicle',
+        name: 'vehicle',
+        component: vehicle,
+        meta: {
+          title: '车辆管理',
           auth: true
         }
       }

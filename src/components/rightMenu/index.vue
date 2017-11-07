@@ -1,82 +1,77 @@
 <template>
-    <el-menu theme="dark" class="right-menu" default-active="12"  @open="handleOpen" @close="handleClose"
-             :collapse="isCollapse">
-      <div @click="switchCollapse" class="right-collapse">
-        <i :class="isCollapse ? 'fa fa-indent':'fa fa-outdent'"></i>
-      </div>
-      <el-menu-item index="12">
-        <i class="el-icon-menu"></i>
-        <span slot="title">工作台</span>
-      </el-menu-item>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-message"></i>
-          <span slot="title">系统管理</span>
+  <aside class="right-menu-wrapper l-r-transform animated"
+         :style="{width:  this.$store.state.common.isCollapse ? '64px' : '200px'}">
+    <div @click="switchCollapse" class="right-collapse">
+      <i :class="this.$store.state.common.isCollapse ? 'fa fa-indent':'fa fa-outdent'"></i>
+    </div>
+    <el-scrollbar tag="div" wrapClass="vue-scrollbar" v-if="!this.$store.state.common.isCollapse">
+      <el-menu class="right-menu" @open="handleOpen" @close="handleClose" :unique-opened="true"
+               :default-active="onRoutes" :default-openeds="onRouteKeys" theme="dark" router
+               :collapse="this.$store.state.common.isCollapse">
+        <template v-for="item in this.$store.state.common.menuData">
+          <sub-menu :param="item"></sub-menu>
         </template>
-        <el-menu-item-group>
-          <el-menu-item index="1-1">用户管理</el-menu-item>
-          <el-menu-item index="1-2">角色管理</el-menu-item>
-          <el-menu-item index="1-2">权限管理</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group>
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <span slot="title">选项4</span>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="3">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-submenu index="4">
-        <template slot="title">
-          <i class="el-icon-message"></i>
-          <span slot="title">系统管理</span>
+      </el-menu>
+    </el-scrollbar>
+    <div class="collapse-bar" v-else>
+      <el-menu theme="dark" :default-active="onRoutes" router :collapse="this.$store.state.common.isCollapse">
+        <template v-for="item in this.$store.state.common.menuData">
+          <sub-menu :param="item"></sub-menu>
         </template>
-        <el-menu-item-group>
-          <el-menu-item index="4-1">用户管理</el-menu-item>
-          <el-menu-item index="4-2">角色管理</el-menu-item>
-          <el-menu-item index="4-2">权限管理</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group>
-          <el-menu-item index="4-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="4-4">
-          <span slot="title">选项4</span>
-          <el-menu-item index="4-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-    </el-menu>
+      </el-menu>
+    </div>
+  </aside>
 </template>
 
 <script>
-  /* :unique-opened="true" */
+  import subMenu from '@/components/rightMenu/subMenu'
   export default {
     name: 'app',
     data () {
-      return {
-        isCollapse: false
+      return {}
+    },
+    components: {
+      subMenu
+    },
+    computed: {
+      onRoutes () {
+        return this.$route.path
+      },
+      onRouteKeys () {
+        const getParentArray = (path, ms, kas = []) => {
+          if (ms && ms.length > 0) {
+            for (let k = 0, length = ms.length; k < length; k++) {
+              if (path === ms[k].href) {
+                kas.push(ms[k].href)
+                break
+              }
+              let i = kas.length
+              if (ms[k].children && ms[k].children.length > 0) {
+                getParentArray(path, ms[k].children, kas)
+              }
+              if (i < kas.length) {
+                kas.push(ms[k].href)
+              }
+            }
+          }
+          return kas.reverse()
+        }
+        return getParentArray(this.$route.path, this.$store.state.common.menuData)
       }
     },
+    created: function () {
+      this.$store.dispatch('common/loadMenuData')
+      console.log(this.$store.state.common.menuData)
+    },
     methods: {
+      switchCollapse () {
+        this.$store.dispatch('common/setIsCollapse')
+      },
       handleOpen (key, keyPath) {
         console.log(key, keyPath)
       },
       handleClose (key, keyPath) {
         console.log(key, keyPath)
-      },
-      switchCollapse () {
-        if (this.isCollapse) {
-          this.isCollapse = false
-        } else {
-          this.isCollapse = true
-        }
       }
     }
   }
@@ -89,19 +84,53 @@
     cursor: pointer;
     color: #BFCBD9;
     font-size: 14px;
+    background-color: #4A5064;
+  }
+
+  .vue-scrollbar {
+    height: calc(100vh - 80px)
+  }
+
+  .collapse-bar {
+    width: 100%;
+    background-color: #324157;
+  }
+
+  .right-menu {
+    border-radius: 0;
   }
 
   .right-menu:not(.el-menu--collapse) {
     width: 200px;
   }
 
-  .right-menu {
-    height: 100%;
+  .right-menu-wrapper {
+    background-color: #333744;
+    position: fixed;
+    top: 50px;
+    z-index: 2;
+    height: calc(100vh - 50px);
+    left: 0px;
   }
-
 
   /*重写 element-ui css*/
   .el-menu-item-group__title {
     display: none;
+  }
+
+  .el-submenu__title > span, .el-menu-item > span {
+    color: #ffffff;
+  }
+
+  .el-submenu__title > i, .el-menu-item > i {
+    color: #fbfbfb;
+  }
+
+  .right-menu:not(.el-menu--collapse) {
+    width: 200px;
+  }
+
+  .is-opened .is-active, .is-opened .is-active:hover, .el-menu-item.el-menu-each.is-active:hover, .el-menu-item.el-menu-each.is-active {
+    background-color: #00C1DE !important;
   }
 </style>
