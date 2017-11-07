@@ -30,7 +30,7 @@
 
 <style>
   .content-scrollbar {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 33px);
   }
 
   .content-wrapper {

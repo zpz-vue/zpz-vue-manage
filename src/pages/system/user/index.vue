@@ -1,46 +1,41 @@
 <template>
   <div class="page-container">
-    <el-row>
-      <el-col :span="6">
-        <el-tree
-          :data="orgData"
-          show-checkbox
-          node-key="id"
-          :default-expanded-keys="[2, 3]"
-          :default-checked-keys="[5]"
-          :props="defaultProps">
-        </el-tree>
-      </el-col>
-      <el-col :span="18">
-        <el-table
-          ref="multipleTable"
-          :data="tableData3"
-          border
-          tooltip-effect="dark"
-          style="width: 100%"
-          @selection-change="handleSelectionChange">
-          <el-table-column
-            type="selection"
-            width="55">
-          </el-table-column>
-          <el-table-column
-            label="日期"
-            width="120">
-            <template >{{ scope.row.date }}</template>
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="姓名"
-            width="120">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="地址"
-            show-overflow-tooltip>
-          </el-table-column>
-        </el-table>
-      </el-col>
-    </el-row>
+    <div class="page-left">
+      <el-tree
+        :data="orgData"
+        node-key="id"
+        :props="defaultProps">
+      </el-tree>
+    </div>
+    <div class="page-content">
+      <el-table
+        ref="multipleTable"
+        :data="tableData3"
+        border
+        tooltip-effect="dark"
+        style="width: 100%"
+        @selection-change="handleSelectionChange">
+        <el-table-column
+          type="selection"
+          width="55">
+        </el-table-column>
+        <el-table-column
+          label="日期"
+          width="120">
+          <template slot-scope="scope">{{ scope.row.date }}</template>
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="姓名"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="address"
+          label="地址"
+          show-overflow-tooltip>
+        </el-table-column>
+      </el-table>
+    </div>
   </div>
 </template>
 
@@ -129,7 +124,26 @@
 
 <style>
   /*#FFFFFF*/
-  .page-container .el-tree {
+  .el-tree{
     border: none;
+    background-color:#EAEDF1 ;
+  }
+  .el-tree-node__content:hover{
+    background-color: #ffffff;
+  }
+  .page-container {
+    height: calc(100vh - 50px);
+  }
+  .page-left{
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    background-color: #EAEDF1;
+  }
+  .page-content{
+    position: absolute;
+    left: 200px;
+    width: calc(100% - 200px);
+    height: 100%;
   }
 </style>
