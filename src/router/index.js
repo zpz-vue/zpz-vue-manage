@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
-import store from '../store/index'
+import * as constant from '@/utils/constant'
+import { getCookie } from '@/utils/cookie'
 
 import home from '@/pages/App.vue'
 import workbench from '@/pages/workbench/index.vue'
@@ -108,7 +109,11 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   NProgress.done().start()
   let toname = to.name
-  let isLogin = store.state.author.isLogin
+  let authUser = getCookie(constant.COOKIE_USER_KEY)
+  let isLogin = false
+  if (authUser !== null && authUser !== undefined && authUser !== '') {
+    isLogin = true
+  }
   if (!isLogin && toname !== 'login') {
     next({
       name: 'login'

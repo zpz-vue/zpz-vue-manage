@@ -16,7 +16,7 @@ export default {
   methods: {
     doLogin () {
       this.$store.dispatch('author/login', {
-        isLogin: true
+        username: 'admin', password: 'admin'
       })
       this.$router.push({path: '/workbench'})
     }
@@ -25,4 +25,6 @@ export default {
 </script>
 
 <style>
+  .container{
+  }
 </style>
