@@ -95,6 +95,7 @@
 
   .logo {
     line-height: 50px;
+    text-align: right;
   }
 
   .logo > span {
@@ -109,7 +110,7 @@
     border-right: 2px solid #2A2F32;
     border-left: 2px solid #2A2F32;
     text-align: center;
-    width: 80px;
+    width: 92px;
     margin-top: -15px;
   }
 
