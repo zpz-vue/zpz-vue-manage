@@ -5,6 +5,10 @@ html,body,.app-wrap,.container{
 }
 .page-container{
 }
+.page-padding-container{
+  width: calc(100% - 20px);
+  padding: 10px;
+}
 body,div,span,a,img{
   margin: 0;
   padding: 0;

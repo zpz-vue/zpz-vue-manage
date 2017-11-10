@@ -131,6 +131,6 @@
   }
 
   .is-opened .is-active, .is-opened .is-active:hover, .el-menu-item.el-menu-each.is-active:hover, .el-menu-item.el-menu-each.is-active {
-    background-color: #00C1DE !important;
+    background-color: #20a0ff !important;
   }
 </style>

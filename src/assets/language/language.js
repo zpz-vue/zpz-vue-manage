@@ -14,7 +14,8 @@ export default {
     scenicSpotManagement: '景点管理',
     restaurantManagement: '餐厅管理',
     guideManagement: '导游管理',
-    projectManagement: '项目管理'
+    projectManagement: '项目管理',
+    hotelTabel: '酒店列表'
   },
 
   en: {
@@ -32,6 +33,7 @@ export default {
     scenicSpotManagement: 'Scenic spot Management',
     restaurantManagement: 'Restaurant Management',
     guideManagement: 'Guide Management',
-    projectManagement: 'Project Management'
+    projectManagement: 'Project Management',
+    hotelTabel: 'Hotel List'
   }
 }
